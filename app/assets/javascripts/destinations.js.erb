@@ -1,0 +1,59 @@
+// # Place all the behaviors and hooks related to the matching controller here.
+// # All this logic will automatically be available in application.js.
+// # You can use CoffeeScript in this file: http://coffeescript.org/
+
+
+
+
+// initially copied code from application.js.erb
+// changed this file from destinations.coffee to .js.erb
+
+
+$(document).ready(function () {
+      alert("the document ready function is working");
+      this.initMap();
+});
+
+function initMap() {
+    var latLong = {lat: latitude, lng: longitude};
+
+
+    var image = "<%= asset_path ('unicorn_icon.png')%>";
+
+
+    var mapOptions = {
+      zoom: 5,
+      center: latLong,
+      scrollwheel: false
+    };
+    var map = new google.maps.Map(document.getElementById('destination-map'), mapOptions);
+    alert("the map init method is being fired");
+
+    var marker = new google.maps.Marker({
+      position: latLong,
+      map: map,
+      title: 'Stronbox West',
+      draggable: true,
+      icon: image,
+      animation: google.maps.Animation.BOUNCE
+    });
+
+
+    var marker2 = new google.maps.Marker({
+      position: latLong2,
+      map: map,
+      title: 'Stronbox East',
+      draggable: true,
+      icon: image,
+      animation: google.maps.Animation.DROP
+    });
+
+
+    var contentString = '<h2>Unicorn Village</h2>' + '<p> Dont Litter, Glitter!</p>' + address ;
+    var infowindow = new google.maps.InfoWindow({
+       content: contentString
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+       infowindow.open(map,marker);
+    });
+}
