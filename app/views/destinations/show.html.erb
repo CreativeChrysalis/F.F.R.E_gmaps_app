@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
 
 <%= javascript_tag do %>
   var latitude = '<%= j @destination.latitude.to_s %>';
@@ -21,6 +21,28 @@
 <p><%= @destination.latitude %>, <%= @destination.longitude %></p>
  <p><%= @destination.description %></p>
 
+
+<%= link_to 'Edit', edit_destination_path(@destination) %> |
+<%= link_to 'Back', destinations_path %> -->
+
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @destination.description %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @destination.latitude %>
+</p>
+
+<p>
+  <strong>Lon:</strong>
+  <%= @destination.longitude %>
+</p>
 
 <%= link_to 'Edit', edit_destination_path(@destination) %> |
 <%= link_to 'Back', destinations_path %>

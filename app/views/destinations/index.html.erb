@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
 
 <h1>Destinations</h1>
 
@@ -27,3 +27,80 @@
 <br>
 
 <%= link_to 'New Destination', new_destination_path %>
+
+ -->
+
+
+
+<% javascript_tag do %>
+  var destinations = "TEST";
+
+<% end %>
+
+
+<div id="map"></div>
+
+<h1>Destinations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>City</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @destinations.each do |destination| %>
+      <tr>
+        <td><%= destination.description %></td>
+        <td><%= destination.latitude %></td>
+        <td><%= destination.longitude %></td>
+        <td><%= link_to 'Show', destination %></td>
+        <td><%= link_to 'Edit', edit_destination_path(destination) %></td>
+        <td><%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Destination', new_destination_path %>
+
+<script>
+    function initMap() {
+      console.log(<%= @destinations.count %>);
+
+      var destination = {destination.latitude, destination.longitude};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: destination
+      });
+      var assignListener = function(markerObj, infoWindowObj){
+                              return function() {
+                                     infoWindowObj.open(map, markerObj);
+                                      };
+                            };
+      <% @destinations.each do |destination| %>
+        var infowindow = new google.maps.InfoWindow({
+          content: "<h1><%= destination.description %></h1>"
+        });
+
+        var location = {latitude: <%= destination.latitude %>, longitude: <%= destination.longitude %>};
+
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+
+        // marker.addListener('click', function() {
+        //   infowindow.open(map, marker);
+        // });
+        marker.addListener('click', assignListener(marker, infowindow) );
+
+      <% end %>
+    }
+</script>

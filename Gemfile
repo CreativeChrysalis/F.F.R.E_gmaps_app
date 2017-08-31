@@ -7,6 +7,9 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'figaro'
+gem 'geocoder'
+
 gem 'rails', '~> 5.1.3'
 gem 'jquery-rails'
 # Use sqlite3 as the database for Active Record
@@ -30,8 +33,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'geocoder'
-gem 'figaro'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

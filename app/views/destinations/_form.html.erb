@@ -13,18 +13,34 @@
 
 
 <!--  we use "form." bc this is what is referenced as placeholder variable above^^^-->
-  <div class="field form-group">
+  <!-- <div class="field form-group">
     <%= form.hidden_field :latitude, class: "form-control" %>
+  </div> -->
+
+  <div class="field">
+    <%= form.hidden_field :latitude, id: :location_latitude %>
   </div>
 
-   <div class="field form-group">
+
+   <!-- <div class="field form-group">
     <%= form.hidden_field :longitude, class: "form-control" %>
+  </div> -->
+
+  <div class="field">
+
+    <%= form.hidden_field :longitude, id: :location_longitude %>
   </div>
 
-  <div class="field form-group">
+  <!-- <div class="field form-group">
    <%= form.label :description %><br>
    <%= form.text_field :description, class: "form-control" %>
- </div>
+ </div> -->
+
+
+ <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :location_description %>
+  </div>
 
   <div class="field">
     <%= form.label :city %>
@@ -32,8 +48,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country, id: :destination_country %>
+    <%= form.label :state %>
+    <%= form.text_field :state, id: :destination_state %>
   </div>
 
   <div class="actions">

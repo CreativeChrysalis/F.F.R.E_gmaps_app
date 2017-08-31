@@ -19,48 +19,90 @@
 // part of the asset pipeline
 
 // First alert shown, on page load:
+
+
 $(document).ready(function () {
-      this.initMap();
+    initMap();
 });
 function initMap() {
 
-    var sites = [
-      ['Machu Picchu', -13.163047, -72.544566, 4],
-      ['Temple of the 3 Windows', -13.163726, -72.544881, 5],
-      ['House of the Guardian to the Funerary Rock', -13.165398, -72.544624, 3],
-      ['Sacred Rock', -13.161846, -72.546104, 2],
-      ['Intihuatana', -13.163439, -72.546732, 1]
-    ];
+    //
+    // var sites = [
+    //   ['Intihuatana', 11.163439, -72.546732, 1],
+    //   ['Machu Picchu', -13.163047, 72.544566, 4],
+    //   ['Temple of the 3 Windows', -13.163726, -72.544881, 5],
+    //   ['House of the Guardian to the Funerary Rock', -13.165398, 33.9234234, 3],
+    //   ['Sacred Rock', -13.161846, 76.546104, 2]
+    //
+    // ];
 
-    var latLong = new google.maps.LatLng(latitude, longitude);
+    var latLong = new google.maps.Map(document.getElementById('map'));
     var image = "<%= asset_path ('unicorn_icon')%>";
-    var fishImg = "<%= asset_path ('unicorn_icon') %>";
+    // var image = "<%= asset_path ('unicorn_icon') %>";
     var mapOptions = {
-      zoom: 10,
-      center: latLong,
+      zoom: 1,
+     center: {lat: -34.397, lng: 150.644},
       scrollwheel: false
     };
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    // sets marker
+    // var marker = new google.maps.Marker({
+    //   position: latLong,
+    //   map: map,
+    //   title: 'Stronbox West',
+    //   icon: image,
+    //   animation: google.maps.Animation.BOUNCE
+    // });
+
+
+
+    // for (i = 0; i < sites.length; i++) {
+    // for (locations) {
+    //   console.log("marker added");
+    //     marker = new google.maps.Marker({
+    //         // position: new google.maps.LatLng(sites[i][1], sites[i][2]),
+    //        position: latLong,
+    //         map: map,
+    //         icon: image,
+    //         animation: google.maps.Animation.DROP
+    //     });
+
+
+
     var marker = new google.maps.Marker({
-      position: latLong,
-      map: map,
-      title: 'Stronbox West',
-      icon: fishImg,
-      animation: google.maps.Animation.BOUNCE
+        position: {lat: -34.397, lng: 150.644},
+         icon: image,
+      animation: google.maps.Animation.DROP
     });
-    for (i = 0; i < sites.length; i++) {
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(sites[i][1], sites[i][2]),
-            map: map,
-            icon: image,
-            animation: google.maps.Animation.DROP
+
+    // To add the marker to the map, call setMap();
+    marker.setMap(map);
+
+
+        var infowindow = new google.maps.InfoWindow({
+           content: location.description
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
         });
     }
-    var contentString = '<h2>RARRRRRr</h2>' + address;
-    var infowindow = new google.maps.InfoWindow({
-       content: contentString
-    });
-    google.maps.event.addListener(marker, 'click', function() {
-       infowindow.open(map,marker);
-    });
-}
+
+
+
+
+
+
+
+
+
+
+
+    // google.maps.event.addListener(marker, 'click', function() {
+    //    infowindow.open(map,marker);
+    // });
+    //
+    // marker.addListener('click', function() {
+    //   infowindow.open(map, marker);
+    // });
+// }

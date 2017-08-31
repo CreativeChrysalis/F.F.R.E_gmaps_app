@@ -10,6 +10,7 @@ class DestinationsController < ApplicationController
   # GET /destinations/1
   # GET /destinations/1.json
   def show
+    # @destinations = Destination.all
   end
 
   # GET /destinations/new
@@ -69,6 +70,6 @@ class DestinationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def destination_params
-      params.require(:destination).permit(:city, :country, :latitude, :longitude, :description)
+      params.require(:destination).permit(:city, :state, :latitude, :longitude, :description)
     end
 end
